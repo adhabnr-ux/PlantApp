@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "PlantHistory": {
+      "title": "Plant History",
+      "description": "A record of a plant identified by the user",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "plantName": { "type": "string" },
+        "scientificName": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "analysis": { "type": "object" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "plantName", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/users/{userId}/history/{historyId}": {
+      "schema": "PlantHistory",
+      "description": "User's plant identification history"
+    }
+  }
+}
