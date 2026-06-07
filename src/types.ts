@@ -46,7 +46,7 @@ export interface Task {
   url?: string;
 }
 
-export type CaptureStatus = 'pending' | 'sent' | 'error';
+export type CaptureStatus = 'pending' | 'queued' | 'sent' | 'error';
 
 export interface CaptureItem {
   id: string;

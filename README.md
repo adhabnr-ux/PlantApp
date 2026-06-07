@@ -14,6 +14,13 @@ It runs **out of the box in mock mode** with realistic demo data and **no creden
 - **All-day Capture** — an always-present capture bar to dump a thought, task or link from anywhere in the app.
 - **AI tagging & day summary** — Gemini suggests tags (and a clean title + destination database) for each capture, and writes a one-paragraph "summarize my day" briefing on demand.
 - **Routed into Notion** — captures become pages in the Notion database you choose.
+- **"Right now" focus card** — your next event with a live countdown and your single top priority, pinned atop the briefing.
+- **Smart capture parsing** — detects links, infers type (task / idea / link / note), and reads natural-language due dates like "tomorrow 3pm".
+- **Voice capture** — tap the mic and dictate a capture hands-free (Web Speech API).
+- **Offline-first queue** — captures made with no signal are queued and auto-sync the moment you reconnect.
+- **Share target** — share a link or text from any app's share sheet straight into Cockpit's capture composer.
+- **Daily Shutdown** — an evening review: what got done, what rolls over to tomorrow, plus a reflection + plan journal.
+- **Search** — filter your recent captures by text, tag, or destination.
 - **Installable & offline PWA** — add it to your home screen; it runs full-screen and keeps your briefing data cached for offline viewing.
 - **Works out-of-the-box** — fully functional mock providers mean zero setup to start.
 

@@ -2,7 +2,15 @@ import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CaptureComposer } from './CaptureComposer';
 
-export function CaptureSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function CaptureSheet({
+  open,
+  initialText = '',
+  onClose,
+}: {
+  open: boolean;
+  initialText?: string;
+  onClose: () => void;
+}) {
   return (
     <AnimatePresence>
       {open && (
@@ -34,7 +42,7 @@ export function CaptureSheet({ open, onClose }: { open: boolean; onClose: () => 
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <CaptureComposer autoFocus onDone={onClose} />
+            <CaptureComposer autoFocus initialText={initialText} onDone={onClose} />
           </motion.div>
         </motion.div>
       )}

@@ -34,6 +34,13 @@ export default defineConfig(({ mode }) => {
               purpose: 'maskable',
             },
           ],
+          // Lets the OS share sheet send links/text straight into Cockpit.
+          share_target: {
+            action: '/',
+            method: 'GET',
+            enctype: 'application/x-www-form-urlencoded',
+            params: { title: 'title', text: 'text', url: 'url' },
+          },
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],

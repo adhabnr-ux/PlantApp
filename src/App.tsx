@@ -1,22 +1,46 @@
 import { useState } from 'react';
-import { Compass, Home, PlusCircle, Settings as SettingsIcon } from 'lucide-react';
+import {
+  Compass,
+  Home,
+  Moon,
+  PlusCircle,
+  Settings as SettingsIcon,
+  WifiOff,
+} from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { BriefingScreen } from './features/briefing/BriefingScreen';
 import { CaptureScreen } from './features/capture/CaptureScreen';
 import { CaptureSheet } from './features/capture/CaptureSheet';
+import { ReviewScreen } from './features/review/ReviewScreen';
 import { SettingsScreen } from './features/settings/SettingsScreen';
+import { useCaptureSync } from './lib/captureSync';
+import { useShareTarget } from './lib/useShareTarget';
 
-type Tab = 'today' | 'capture' | 'settings';
+type Tab = 'today' | 'capture' | 'review' | 'settings';
 
 const NAV: { id: Tab; label: string; icon: typeof Home }[] = [
   { id: 'today', label: 'Today', icon: Home },
   { id: 'capture', label: 'Capture', icon: PlusCircle },
+  { id: 'review', label: 'Review', icon: Moon },
   { id: 'settings', label: 'Settings', icon: SettingsIcon },
 ];
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('today');
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [shareText, setShareText] = useState('');
+  const { online } = useCaptureSync();
+
+  // Inbound shares from the OS share sheet open the capture composer prefilled.
+  useShareTarget((text) => {
+    setShareText(text);
+    setSheetOpen(true);
+  });
+
+  const openCapture = () => {
+    setShareText('');
+    setSheetOpen(true);
+  };
 
   return (
     <div className="mx-auto flex min-h-full max-w-xl flex-col">
@@ -28,6 +52,11 @@ export default function App() {
           </div>
           <span className="text-lg font-bold tracking-tight text-slate-100">Cockpit</span>
         </div>
+        {!online && (
+          <div className="flex items-center justify-center gap-2 bg-amber-500/15 py-1.5 text-xs font-medium text-amber-300">
+            <WifiOff className="h-3.5 w-3.5" /> Offline — captures are queued and will sync
+          </div>
+        )}
       </header>
 
       {/* Content */}
@@ -40,8 +69,9 @@ export default function App() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
           >
-            {tab === 'today' && <BriefingScreen onCapture={() => setSheetOpen(true)} />}
+            {tab === 'today' && <BriefingScreen onCapture={openCapture} />}
             {tab === 'capture' && <CaptureScreen />}
+            {tab === 'review' && <ReviewScreen />}
             {tab === 'settings' && <SettingsScreen />}
           </motion.div>
         </AnimatePresence>
@@ -69,7 +99,11 @@ export default function App() {
         </div>
       </nav>
 
-      <CaptureSheet open={sheetOpen} onClose={() => setSheetOpen(false)} />
+      <CaptureSheet
+        open={sheetOpen}
+        initialText={shareText}
+        onClose={() => setSheetOpen(false)}
+      />
     </div>
   );
 }

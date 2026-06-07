@@ -16,6 +16,7 @@ import { ScheduleList } from './ScheduleList';
 import { NeedsReplyList } from './NeedsReplyList';
 import { TaskList } from './TaskList';
 import { DaySummary } from './DaySummary';
+import { FocusCard } from './FocusCard';
 
 function greeting(): string {
   const h = new Date().getHours();
@@ -105,6 +106,10 @@ export function BriefingScreen({ onCapture }: { onCapture: () => void }) {
         <Plus className="h-5 w-5 text-indigo-400" />
         <span className="text-sm">Capture a thought, task or link…</span>
       </button>
+
+      {!anyLoading && (
+        <FocusCard events={eventsState.data ?? []} tasks={tasks} />
+      )}
 
       <DaySummary ai={providers.ai} briefing={briefing} disabled={anyLoading} />
 
