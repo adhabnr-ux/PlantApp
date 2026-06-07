@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Cockpit">
+  <defs>
+    <linearGradient id="cp" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="cp2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- deep slate rounded-square background -->
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="#0f172a"/>
+
+  <!-- outer compass arc (open at the bottom) -->
+  <path d="M 16.5 43 A 21 21 0 1 1 47.5 43"
+        fill="none" stroke="url(#cp)" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- inner arc -->
+  <path d="M 45 24 A 14 14 0 1 1 19 24"
+        fill="none" stroke="url(#cp2)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- upward chevron -->
+  <path d="M 24 33 L 32 26 L 40 33"
+        fill="none" stroke="#38bdf8" stroke-width="4.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- bold accent command dot -->
+  <circle cx="32" cy="35" r="4.5" fill="#6366f1"/>
+</svg>
