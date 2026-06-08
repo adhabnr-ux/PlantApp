@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx tsc --noEmit && npx vite build --base=/plantapp/
+        run: npx tsc --noEmit && npx vite build --base=/PlantApp/
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
